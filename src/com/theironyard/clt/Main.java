@@ -5,8 +5,15 @@ package com.theironyard.clt;
  */
 public class Main {
     public static void main(String[] args) {
-        // This is the starting point of your program
-        // Architect your solution however you see fit.
+
+        System.out.println("Hello, please enter your name.");
+        Scanner scanner = new Scanner(System.in);
+
+        String name = scanner.nextLine();
+        
+
+
+
 
         // quick note: throwing exceptions
         // you can throw a new one with this:
