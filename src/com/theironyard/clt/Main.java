@@ -17,6 +17,10 @@ public class Main {
 
         if (option.equalsIgnoreCase("balance")) {
             System.out.println("Your balance is $100.");
+            String cancel = scanner.nextLine();
+            if (cancel.equalsIgnoreCase("cancel")) {
+                System.out.println("Thank you, please come again.");
+            }
 
         } else if (option.equalsIgnoreCase("withdraw")) {
             System.out.println("How much?");
@@ -24,12 +28,15 @@ public class Main {
             int amount = scanner.nextInt();
             if (amount > 100) {
                 System.out.println("Insufficient funds");
+                throw new IllegalArgumentException("Amount too great for logical computers.");
 
             } else if (amount <= 0) {
                 System.out.println("Positive amount needed.");
+                throw new IllegalArgumentException("Only works in positives.");
 
             } else {
                 System.out.println("Withdraw complete, please take your money.");
+                
 
             }
         }
