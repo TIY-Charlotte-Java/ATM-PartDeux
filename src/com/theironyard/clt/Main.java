@@ -2,6 +2,10 @@ package com.theironyard.clt;
 
 import java.util.Scanner;
 
+/*
+    git remote add partTwo https://github.com/TIY-Charlotte-Java/ATM-PartDeux.git`
+ */
+
 public class Main {
 
     public static void main(String[] args) throws Exception {
