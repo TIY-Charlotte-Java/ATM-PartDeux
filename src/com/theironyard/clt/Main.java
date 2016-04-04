@@ -1,47 +1,70 @@
 package com.theironyard.clt;
 
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
  * Created by Ben on 3/30/16.
  */
 public class Main {
-    public static void main(String[] args) throws Exception {
-        System.out.println("What is your name?");
 
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+        displayMenu();
+    }
 
-        String name = scanner.nextLine();
-        System.out.println("Welccome," + name);
+    private static int makeSelection(ArrayList<Integer> options) {
+        Scanner input = new Scanner(System.in);
 
-        System.out.println("Choose your option [check balance/withdraw funds]");
-        String option = scanner.nextLine();
+        int choice = -1;
 
-        if (option.equalsIgnoreCase("check balance")) {
-            System.out.println("Your balance is $100!");
-        } else if (option.equalsIgnoreCase("withdraw funds")) {
-            System.out.println("How much!");
+        try {
+            choice = input.nextInt();
         }
 
-        System.out.println("Choose withdraw value [< 100/> 100");
-        String value = scanner.nextLine();
+        catch (InputMismatchException ex) {
 
-        if (value.equalsIgnoreCase("< 100")) {
-            System.out.println("Please take your funds!");
-        } else if (value.equalsIgnoreCase("> 100")) {
-            System.out.println("Insufficient Funds");
-        } else {
-            throw new Exception("Invalid value.");
         }
 
-        // This is the starting point of your program
-        // Architect your solution however you see fit.
+        if (options.contains(choice) == false {
+            choice = -1;
+            System.out.println("Invalid Selection.");
+        }
 
-        // quick note: throwing exceptions
-        // you can throw a new one with this:
-        // throw new IllegalArgumentException("Message About Exception");
+        return choice;
 
-        // You will need this in a couple places in your code.
-        // We will discuss more about exceptions in the coming days.
+    }
+
+     public static void displayMenu() {
+         int selection = 0;
+
+         ArrayList<Integer> options = new ArrayList<>();
+
+         options.add(1);
+         options.add(2);
+         options.add(3);
+
+         do {
+             System.out.println("1. Check Balance");
+             System.out.println("2. Withdraw Funds");
+             System.out.println("3. Deposi Money");
+
+             selection = makeSelection(options);
+         } while (selection == -1);
+
+         if (selection == 1) {
+             //checkBalance ();
+             System.out.println("Checked Balance");
+
+         } else if (selection == 2) {
+             //withdraw
+             System.out.println("Withdrew Money");
+         }
+
+
+
+
+
+
     }
 }
