@@ -89,8 +89,13 @@ public class NewAccount {
                 System.out.println("Current balance " + accountExceptionHashMap.get(accountToWithdraw).getBalance());
             }
         }
+        //quit
+        else if (choice.equals("ex")) {
+            break;
+        } else {
+            System.out.println("Wrong option.");
+        } //end of loop
 
-
-
-    }
-}
+        input.close();
+    } //end of main
+} //end of class
