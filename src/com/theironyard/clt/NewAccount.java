@@ -44,9 +44,50 @@ public class NewAccount {
             }
             // select account
             else if(choice.equals("se")) {
-                System.out.println("");
+                System.out.println("Enter number of account to be selected: ");
+                Integer accounttoGetNumber = input.nextInt();
+                AccountException returnedAccount = accountExceptionHashMap.get(accounttoGetNumber);
+                if (returnedAccount != null)
+                {
+                    System.out.println("Account open. Current balance: " + returnedAccount.getBalance());
+                }
+                else
+                {
+                    //user input for account nr from array
+                    System.out.println("Account does not exist.");
+                }
             }
 
+        }
+        //close account
+        else if (choice.equals("de"))
+        {
+            System.out.println("Enter number of account to be selected: ");
+            Integer accountToDeleteNumber = input.nextInt();
+            AccountException removedAccount = accountExceptionHashMap.remove(accountToDeleteNumber);
+            if (removedAccount != null)
+            {
+                System.out.println("Account " + removedAccount.getAccountNumber() + "has been closed with balance: " + removedAccount.geBalance());
+            }
+            else
+            {
+                //user input for account nr from array
+                System.out.println("Account does not exist.");
+            }
+        }
+        // deposit
+        else if (choice.equals("dp")) {
+            System.out.println("Enter number of account to deposit: ");
+            Integer accountToDeposit = input.nextInt();
+            System.out.print("Enter ammount to deposit: ");
+            double amount = input.nextDouble();
+            if(amount <= 0){
+                System.out.println("You must deposit an amount greater than 0.");
+            } else {
+                accountExceptionHashMap.get(accountToWithdraw).withdraw(amount);
+                System.out.println();("You have deposited " + (amount));
+                System.out.println("Current balance " + accountExceptionHashMap.get(accountToWithdraw).getBalance());
+            }
         }
 
 
