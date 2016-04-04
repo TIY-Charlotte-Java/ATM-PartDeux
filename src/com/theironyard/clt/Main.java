@@ -8,6 +8,12 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter your name.");
+        String name = scanner.nextLine();
+
+
+
         displayMenu();
 
         // quick note: throwing exceptions
@@ -49,8 +55,13 @@ public class Main {
 
         } while(selection == -1);
         if (selection == 1) {
-            
-
+            System.out.println("balance checked!");
+        }
+        else if (selection == 2) {
+            System.out.println("Take your money.");
+        }
+        else if (selection == 3) {
+            System.out.println("Money deposited.");
         }
     }
 }
