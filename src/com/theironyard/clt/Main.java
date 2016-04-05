@@ -13,11 +13,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter your name.");
         String name = scanner.nextLine();
-        System.out.println("Hello " + name + ", please select an option.");
-        if (name.equalsIgnoreCase(String.valueOf(accounts))) {
-            System.out.println("Account not found.  would you like to make an account?");
+        if (!name.equalsIgnoreCase(String.valueOf(accounts))) {
+            System.out.println("Account not found.  would you like to make an account?  if so , please enter your name and starting deposit.");
             accounts.put(scanner.next(), scanner.nextDouble());
         }
+        System.out.println("Hello " + name + ", please select an option.");
 
 
 
