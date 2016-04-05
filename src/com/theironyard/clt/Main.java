@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static com.theironyard.clt.Accounts.accounts;
+
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -12,6 +14,10 @@ public class Main {
         System.out.println("Please enter your name.");
         String name = scanner.nextLine();
         System.out.println("Hello " + name + ", please select an option.");
+        if (name.equalsIgnoreCase(String.valueOf(accounts))) {
+            System.out.println("Account not found.  would you like to make an account?");
+            accounts.put(scanner.next(), scanner.nextDouble());
+        }
 
 
 
