@@ -1,14 +1,20 @@
 package com.theironyard.charlotte;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Account {
     private String name;
     private String option;
     private String yesOrNo;
+    private String createAcct;
     private boolean flag;
     private double balance;
     private static final Scanner scanner = new Scanner(System.in);
+
+    HashMap<String, Double> accounts = new HashMap<>();
+
+    //Setters and Getters
 
     public double getBalance() {
         return balance;
@@ -18,35 +24,82 @@ public class Account {
         this.balance = balance;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getOption() {
+        return option;
+    }
+
+    public void setOption(String option) {
+        this.option = option;
+    }
+
+    public String getYesOrNo() {
+        return yesOrNo;
+    }
+
+    public void setYesOrNo(String yesOrNo) {
+        this.yesOrNo = yesOrNo;
+    }
+
+    public String getCreateAcct() {
+        return createAcct;
+    }
+
+    public void setCreateAcct(String createAcct) {
+        this.createAcct = createAcct;
+    }
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
+    //Methods
+
     public void selectOption () throws Exception {
         {
-            flag = true;
-            while (flag != false) {
+            setFlag(true);
+            while (isFlag()) {
                 System.out.println("\nPlease Choose from these following options: ");
-                System.out.println("1. Check " + name + "'s Balance");
+                System.out.println("1. Check " + getName() + "'s Balance");
                 System.out.println("2. Withdraw Funds");
                 System.out.println("3. Deposit Funds");
-                System.out.println("4. Coin Count(Under Construction: Don't select =)");
-                System.out.println("5. Cancel");
-                option = scanner.next();
+                System.out.println("4. Coin Count");
+                System.out.println("5. Delete Account");
+                System.out.println("6. Cancel");
+                setOption(scanner.next());
 
-                if (option.equals("1")) {
+                if (getOption().equals("1")) {
                     System.out.println(name + "'s balance is: " + getBalance());
                     selectReset();
-                } else if (option.equals("2")) {
+                } else if (getOption().equals("2")) {
                     System.out.println("How much money would you like to withdraw?");
                     selectWithdraw();
                     selectReset();
-                } else if (option.equals("3")) {
+                } else if (getOption().equals("3")) {
                     System.out.println("How much money would you like to deposit?");
                     selectDeposit();
                     selectReset();
-                } else if (option.equals("5")) {
+                } else if (getOption().equals("6")) {
                     System.out.println("Thank you for banking at Java National Bank!");
-                    flag = false;
-                } else if (option.equals("4")) {
-                    System.out.println("What did I say? You don't listen. Goodbye!");
-                    flag = false;
+                    setFlag(false);
+                } else if (getOption().equals("4")) {
+                    coinCount(getBalance());
+                    selectReset();
+                    setFlag(false);
+                } else if (getOption().equals("5")) {
+                    deleteAccount();
+                    createAccount();
                 }
             }
         }
@@ -54,11 +107,11 @@ public class Account {
 
     public void selectName() throws Exception {
         System.out.println("Please enter your name: ");
-        name = scanner.nextLine();
-        if (name.isEmpty() || name.startsWith(" ")) {
+        setName(scanner.nextLine());
+        if (getName().isEmpty() || getName().startsWith(" ")) {
             throw new Exception("Error: Nothing entered");
         } else {
-            System.out.println("Welcome, " + name);
+            System.out.println("Welcome, " + getName());
         }
     }
 
@@ -77,8 +130,8 @@ public class Account {
     public void selectDeposit () throws Exception {
         double deposit = scanner.nextDouble();
         if (deposit > 0) {
-            balance += deposit;
-            setBalance(balance);
+            setBalance(deposit + balance);
+            //setBalance(balance);
             System.out.println("You have deposited: " + deposit);
             System.out.println("Your new balance is: " + getBalance());
         } else {
@@ -88,12 +141,12 @@ public class Account {
     }
 
     public void selectReset() throws Exception {
-        System.out.println("Would you like to revert to the main menu? Yes or No");
-        yesOrNo =  scanner.next();
-        if (yesOrNo.equalsIgnoreCase("yes")) {
+        System.out.println("\nWould you like to revert to the main menu? Yes or No");
+        setYesOrNo(scanner.next());
+        if (getYesOrNo().equalsIgnoreCase("yes")) {
             selectOption();
-        } else if (yesOrNo.equalsIgnoreCase("no")) {
-            flag = false;
+        } else if (getYesOrNo().equalsIgnoreCase("no")) {
+            setFlag(false);
             System.out.println("Thank you for banking at Java National Bank!");
         } else {
             throw new Exception("Error: Incorrect input");
@@ -103,7 +156,7 @@ public class Account {
     public static void coinCount (double money) {
         money *= 100;
 
-        int [] currencies = { 100, 25, 10, 5, 1 };
+       // int [] currencies = { 100, 25, 10, 5, 1 };
 
         int dollar = 100;
         int quarter = 25;
@@ -120,8 +173,36 @@ public class Account {
         int dimes = (int)(money / dime);
         money -= dimes * dime;
 
+        int nickels = (int)(money/ nickel);
+        money -= nickels * nickel;
+
         int pennies = (int)(money / penny);
 
-        System.out.printf("You have %d dollars, %d quarters, %d dimes, %d nickles and %d pennies. \n", dollars, quarters, dimes, pennies);
+        System.out.printf("You have %d dollars, %d quarters, %d dimes, %d nickles and %d pennies. \n",dollars,quarters,dimes,nickels,pennies);
+    }
+
+    public void createAccount() throws Exception {
+        System.out.println("Do you have an account with Java National Bank?");
+        setCreateAcct(scanner.next());
+        if (getCreateAcct().equalsIgnoreCase("yes")) {
+            setName(scanner.nextLine());
+            setBalance(0);
+            selectName();
+            selectOption();
+        } else if (getCreateAcct().equalsIgnoreCase("no")) {
+            System.out.println("Let's create an account!");
+            System.out.println("Please enter your name and the deposit value: ");
+            setName(scanner.next());
+            setBalance(scanner.nextDouble());
+            accounts.put(getName(), getBalance());
+        } else {
+            throw new Exception("Error: Incorrect choice");
+        }
+    }
+
+    public void deleteAccount() throws Exception {
+        accounts.remove(getName());
+        System.out.println("You have successfully removed your account!");
+        //createAccount();
     }
 }

@@ -6,9 +6,7 @@ public class Main {
         Account one = new Account();
 
         System.out.println("Welcome to Java National Bank!");
-
-        one.setBalance(100.00);
-        one.selectName();
+        one.createAccount();
         one.selectOption();
 
     }
