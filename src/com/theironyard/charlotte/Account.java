@@ -19,7 +19,6 @@ public class Account {
     public double getBalance() {
         return balance;
     }
-
     public void setBalance(double balance) {
         this.balance = balance;
     }
@@ -27,7 +26,6 @@ public class Account {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -35,7 +33,6 @@ public class Account {
     public String getOption() {
         return option;
     }
-
     public void setOption(String option) {
         this.option = option;
     }
@@ -43,7 +40,6 @@ public class Account {
     public String getYesOrNo() {
         return yesOrNo;
     }
-
     public void setYesOrNo(String yesOrNo) {
         this.yesOrNo = yesOrNo;
     }
@@ -51,7 +47,6 @@ public class Account {
     public String getCreateAcct() {
         return createAcct;
     }
-
     public void setCreateAcct(String createAcct) {
         this.createAcct = createAcct;
     }
@@ -59,7 +54,6 @@ public class Account {
     public boolean isFlag() {
         return flag;
     }
-
     public void setFlag(boolean flag) {
         this.flag = flag;
     }
@@ -76,7 +70,8 @@ public class Account {
                 System.out.println("3. Deposit Funds");
                 System.out.println("4. Coin Count");
                 System.out.println("5. Delete Account");
-                System.out.println("6. Cancel");
+                System.out.println("6. Main Menu");
+                System.out.println("7. Exit ATM");
                 setOption(scanner.next());
 
                 if (getOption().equals("1")) {
@@ -90,7 +85,7 @@ public class Account {
                     System.out.println("How much money would you like to deposit?");
                     selectDeposit();
                     selectReset();
-                } else if (getOption().equals("6")) {
+                } else if (getOption().equals("7")) {
                     System.out.println("Thank you for banking at Java National Bank!");
                     setFlag(false);
                 } else if (getOption().equals("4")) {
@@ -100,6 +95,8 @@ public class Account {
                 } else if (getOption().equals("5")) {
                     deleteAccount();
                     createAccount();
+                } else if (getOption().equals("6")) {
+                    createAccount();
                 }
             }
         }
@@ -107,11 +104,13 @@ public class Account {
 
     public void selectName() throws Exception {
         System.out.println("Please enter your name: ");
-        setName(scanner.nextLine());
+        setName(scanner.next());
         if (getName().isEmpty() || getName().startsWith(" ")) {
             throw new Exception("Error: Nothing entered");
-        } else {
+        } else if (accounts.containsKey(getName())){
             System.out.println("Welcome, " + getName());
+        } else {
+            throw new Exception("Error: Not an account");
         }
     }
 
@@ -185,16 +184,15 @@ public class Account {
         System.out.println("Do you have an account with Java National Bank?");
         setCreateAcct(scanner.next());
         if (getCreateAcct().equalsIgnoreCase("yes")) {
-            setName(scanner.nextLine());
-            setBalance(0);
             selectName();
+            setBalance(accounts.get(name));
             selectOption();
         } else if (getCreateAcct().equalsIgnoreCase("no")) {
             System.out.println("Let's create an account!");
             System.out.println("Please enter your name and the deposit value: ");
             setName(scanner.next());
             setBalance(scanner.nextDouble());
-            accounts.put(getName(), getBalance());
+            accounts.put(name, balance);
         } else {
             throw new Exception("Error: Incorrect choice");
         }
