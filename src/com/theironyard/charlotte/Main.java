@@ -1,25 +1,28 @@
 package com.theironyard.charlotte;
 
-public class ATM {
+//
+
+public class Main {
 
     public static void main(String[] args) throws Exception {
-
-
-        System.out.println("Greetings, Bank Member!");
-
+        //booleans to control loops
         boolean canceled;
         boolean poweredOff = false;
+        //Call up scanner
+       // Scanner scanner = new Scanner(System.in);
 
+        //Create new instance for user account and transaction
         Account user = new Account();
-        Transaction transaction = new Transaction();
-
 
         while (!poweredOff) {
             canceled = false;
 
             //Asks user for their name
             user.initialNameRequest();
-
+            //user.setInputName(scanner.nextLine());
+            if (user.getInputName().equals("")){
+                continue;
+            }
             //resets all accounts ends program
             if (user.getInputName().equalsIgnoreCase("escape")){
                 poweredOff = true;
@@ -29,36 +32,50 @@ public class ATM {
             //Checks if user name exists. If it does it will set class Transaction's balance to balance stored in account.
             // If it doesn't then it will return null, and request user to create a new account. If they don't create a new account
             // it asks for a new name.
-            transaction.setBalance(user.getAccounts().get(user.getInputName()));
-            if (transaction.getBalance() == null) {
+            if (user.getAccounts().get(user.getInputName()) == null) {
                 user.createAccount();
-                transaction.setBalance(user.getAccounts().get(user.getInputName()));
                 if(user.getInputName().equals("")){
-                    canceled = true;
+                    //canceled = true;
+                    continue;
+                }
+                else {
+                    System.out.println("Welcome " + user.getInputName());
                 }
 
             }
             while (!canceled) {
-                transaction.chooseEvent();
-                switch (transaction.getSelection()) {
+                user.chooseEvent();
+                switch (user.getSelection()) {
                     case 1: {
-                        System.out.println("WOW! Your current balance is $" + transaction.getBalance());
+                        //print balance
+                        System.out.println("WOW! Your current balance is $" + user.getAccounts().get(user.getInputName()));
                         break;
                     }
                     case 2: {
-                        transaction.setBalance(user.getAccounts().get(user.getInputName()));
-                        transaction.withdrawFunds();
-                        user.getAccounts().put(user.getInputName(),transaction.getBalance());
+                        //deposit funds
+                        user.depositFunds();
                         break;
                     }
                     case 3: {
-                        user.removeAccount();
+                        //withdraw funds
+                        user.withdrawFunds();
+                        break;
                     }
                     case 4: {
-                        //Transfer funds
-                        System.out.println("Man oh man I just can't move your money right now!");
+                        //remove account
+                        user.removeAccount();
+                        if (user.getAccounts().get(user.getInputName()) == null){
+                            canceled = true;
+                    }
+                        break;
                     }
                     case 5: {
+                        //Transfer funds
+                        user.transferMoney();
+                        break;
+                    }
+                    case 6: {
+                        //cancel
                         System.out.println("Canceling");
                         System.out.println("Thank you, please come again");
                         canceled = true;
