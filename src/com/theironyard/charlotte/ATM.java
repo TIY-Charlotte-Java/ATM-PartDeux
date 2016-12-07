@@ -15,32 +15,33 @@ public class ATM {
     HashMap<String, Double> newAccount = new HashMap<>();
     Accounts account = new Accounts();
 
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
 
     public void createPerson() throws Exception {
         Scanner input = new Scanner(System.in);
-        newAccount.put("emileen", account.getBalance());
-        newAccount.put("alicia", account.getBalance());
-        newAccount.put("felicia", account.getBalance());
+        //newAccount.put("emileen", account.getBalance());
+        //newAccount.put("alicia", account.getBalance());
+        //newAccount.put("felicia", account.getBalance());
 
 
-        //do
-        while (true){
+        while (true) {
             System.out.println("Please enter your first name");
             setName(input.nextLine());
             if (!getName().equals("")) {
 
                 if (!newAccount.containsKey(getName())) {
                     System.out.println("You did not have an account -- one has been created ");
-                    System.out.println("Welcome " + getName() );
+                    System.out.println("Welcome " + getName());
                     newAccount.put(getName(), account.getBalance());
                     option();
 
@@ -55,10 +56,7 @@ public class ATM {
                 System.out.println(m.getKey() + " " + m.getValue());
             }
 
-        } //while (choice != 4 || answer != 2);
-
-
-
+        }
     }
 
     public void option() throws Exception {
@@ -78,9 +76,6 @@ public class ATM {
             if (choice == 1) {
                 account.printBalance();
             } else if (choice == 2) {
-                //Transaction moneyTaken = new Transaction();
-                //Account withdrawl = new Account();
-                //withdrawl.amountWithdrawn();
                 account.amountWithdrawn();
 
             } else if (choice == 3) {

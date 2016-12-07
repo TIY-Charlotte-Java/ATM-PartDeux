@@ -12,20 +12,23 @@ public class Accounts {
     private double balance;
 
     public Accounts() {
+
         this.balance = 100;
     }
 
     public void setBalance(double balance) {
+
         this.balance = balance;
     }
 
     public double getBalance() {
 
-        return balance;
+        return balance ;
     }
 
 
     public void printBalance() {
+
         System.out.println("your balance is " + getBalance());
     }
 
@@ -47,9 +50,10 @@ public class Accounts {
         }
     }
 
-    public void deposit() throws Exception{
+    public void deposit() {
         Scanner input = new Scanner(System.in);
         System.out.println("Please enter the amount you would like to Deposit");
+        //double depositamount;
         amountWanted = input.nextDouble();
         setBalance(getBalance() + amountWanted);
         System.out.println("your balance is after deposit is " + getBalance());
