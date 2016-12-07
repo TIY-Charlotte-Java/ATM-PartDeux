@@ -15,23 +15,22 @@ public class ATM {
     HashMap<String, Double> newAccount = new HashMap<>();
     Accounts account = new Accounts();
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
 
     public void createPerson() throws Exception {
         Scanner input = new Scanner(System.in);
-        //newAccount.put("emileen", account.getBalance());
-        //newAccount.put("alicia", account.getBalance());
-        //newAccount.put("felicia", account.getBalance());
+
+        newAccount.put("emileen", account.getBalance());
+        newAccount.put("alicia", account.getBalance());
+        newAccount.put("felicia", account.getBalance());
 
 
         while (true) {
@@ -44,11 +43,13 @@ public class ATM {
                     System.out.println("Welcome " + getName());
                     newAccount.put(getName(), account.getBalance());
                     option();
-
                 } else {
                     System.out.println("This name already exists");
+                    newAccount.put(getName(), account.getBalance());
+
                 }
             } else {
+
                 throw new Exception("you have a blank entry -- cant accept");
             }
 
@@ -57,6 +58,7 @@ public class ATM {
             }
 
         }
+
     }
 
     public void option() throws Exception {
@@ -82,6 +84,8 @@ public class ATM {
                 account.deposit();
 
             } else if (choice == 4) {
+                account.deleteAccount();
+
                 System.out.println("Account has been removed");
             } else {
                 System.out.println("Thank you and Please come again");

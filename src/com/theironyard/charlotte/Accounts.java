@@ -6,6 +6,9 @@ import java.util.Scanner;
  * Created by emileenmarianayagam on 12/7/16.
  */
 public class Accounts {
+
+    Scanner input = new Scanner(System.in);
+
     double amountWanted;
 
 
@@ -23,7 +26,7 @@ public class Accounts {
 
     public double getBalance() {
 
-        return balance;
+        return this.balance;
     }
 
 
@@ -34,10 +37,7 @@ public class Accounts {
 
 
     public void amountWithdrawn() throws Exception {
-        //Account create = new Account();
 
-
-        Scanner input = new Scanner(System.in);
         System.out.println("Please enter the amount of fund you would like to withdraw");
         amountWanted = input.nextDouble();
         if (amountWanted > getBalance()) {
@@ -51,12 +51,21 @@ public class Accounts {
     }
 
     public void deposit() {
-        Scanner input = new Scanner(System.in);
+        //Scanner input = new Scanner(System.in);
         System.out.println("Please enter the amount you would like to Deposit");
         //double depositamount;
         amountWanted = input.nextDouble();
         setBalance(getBalance() + amountWanted);
         System.out.println("your balance is after deposit is " + getBalance());
+    }
+
+    public void deleteAccount(){
+        System.out.println("Would you like to delete account -- Y/N");
+        String delAccount = input.next();
+        if (delAccount.equalsIgnoreCase("Y")){
+
+
+        }
     }
 
 
