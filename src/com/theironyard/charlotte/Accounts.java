@@ -23,13 +23,13 @@ public class Accounts {
 
     public double getBalance() {
 
-        return balance ;
+        return balance;
     }
 
 
     public void printBalance() {
 
-        System.out.println("your balance is " + getBalance());
+        System.out.println("your balance is " + getBalance() );
     }
 
 
