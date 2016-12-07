@@ -6,7 +6,7 @@ public class Main {
 
     public static Scanner scanner = new Scanner(System.in);
 
-    private static String getName(){
+    private static String getName() {
         System.out.println ("Hello! What is your name?");
         return scanner.nextLine();
     }
@@ -48,6 +48,7 @@ public class Main {
         if (name.isEmpty()) {
             continue;
         }
+
         Account current = atm.getAccount(name);
 
         if (current == null) {

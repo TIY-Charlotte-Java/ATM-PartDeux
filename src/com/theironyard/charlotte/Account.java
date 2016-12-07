@@ -23,7 +23,7 @@ public class Account {
         this.balance = balance;
     }
 
-    Account (){
+    Account () {
         balance = 100.00;
     }
 
@@ -61,5 +61,4 @@ public class Account {
     public void cancel() {
         getName();
     }
-
 }
