@@ -53,7 +53,7 @@ public class Main {
 
         if (current == null) {
             System.out.println("I'm sorry, it doesn't look like you have an account with us.");
-            System.out.println("Would you like to create one?");
+            System.out.println("Would you like to create one? Please enter yes or no.");
             String create = scanner.nextLine();
             if (create.equalsIgnoreCase("yes")) {
                 System.out.println("Welcome to Silverman Bags! We will start your account with $100.");
