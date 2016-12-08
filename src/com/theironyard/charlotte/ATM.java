@@ -7,12 +7,12 @@ import java.util.Scanner;
  * Created by Ben on 12/6/16.
  */
 public class ATM {
-    Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
     private HashMap<String, Account> accounts = new HashMap<>();
 
-    private String selectChoice;
-    private Account currentAccount;
-    Account a = new Account();
+    private static String selectChoice;
+    private static Account currentAccount;
+    private static Account a = new Account();
 
     public Account getCurrentAccount() {
         return currentAccount;
@@ -66,7 +66,6 @@ public class ATM {
     }
     private void displayUserMenu(Account account) {
         while (true) {
-            Account a = new Account();
             ATM atm = new ATM();
             System.out.println("What would you like to do?");
             System.out.println("1. Balance");
@@ -78,12 +77,12 @@ public class ATM {
             selectChoice = scanner.nextLine();
 
             if (selectChoice.equals("1")) {
-                a.checkBalance();
+                account.checkBalance();
             } else if (selectChoice.equals("2")) {
-                a.withdraw();
+                account.withdraw();
             } else {
                 if (selectChoice.equals("3")) {
-                    a.deposit();
+                    account.deposit();
                 } else if (selectChoice.equals("4")) {
                     System.out.println("Logging out...");
                     break;
